@@ -6,21 +6,48 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 14:39:52 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/17 17:27:34 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/02/20 19:50:39 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx/mlx.h"
 
+int	ft_errors(int argc, char **argv, t_game *game)
+{
+	ft_check_errors_arg(argc, argv);
+	if (ft_check_surroended(game) == -1)
+	{
+		ft_free_map(game);
+		write (2, "Error\nThe map is not surroended by 1s\n", 38);
+		exit(-1);
+	}
+	if (ft_check_items(game) == -1 || ft_check_symbols(game) == -1)
+	{
+		ft_free_map(game);
+		write (2, "Error\nThe map has not the correct items or symbols\n", 40);
+		exit(-1);
+	}
+	printf("Este es el numero de coleccionables: %d", game->collect);
+	ft_check_square(game);
+	game->cp_map = copy_map(game);
+	if(ft_player_post(game) == -1)
+	{
+		write (2, "Error\nThere's not a path between the player and the exit", 56);
+		exit (-1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
 	game.count = 0;
-	ft_check_errors_arg(argc, argv);
+//	ft_check_errors_arg(argc, argv);
 	ft_read_map(argv, &game);
-//	ft_map_measures(&game);
+	ft_map_measures(&game);
+	ft_errors(argc, argv, &game);
 //	if (ft_check_surroended(&game) == -1)
 //	{
 //		ft_free_map(&game);
@@ -34,21 +61,27 @@ int	main(int argc, char **argv)
 //		exit(-1);
 //	}
 //	ft_check_square(&game);
+//	ft_player_post(&game);
+//	if (ft_check_path(&game, game.player_x, game.player_y) == -1)
+//	{
+//		write (2, "Error\nThere's not a path between the player and the exit", 56);
+//		exit (-1);
+//	}
 // INICIAR JUEGO
-//	game.mlx_ptr = mlx_init();
+	game.mlx_ptr = mlx_init();
 // CARGA LAS IMAGENES
-//	ft_upload_img(&game);
+	ft_upload_img(&game);
 // PONER EN PANTALLA LA VENTANA DEL JUEGO
-//	game.win_ptr = mlx_new_window(game.mlx_ptr, game.width * SIZE,
-//			game.height * SIZE, "Pacoman");
+	game.win_ptr = mlx_new_window(game.mlx_ptr, game.width * SIZE,
+			game.height * SIZE, "Pacoman");
 // PRINTAR EL MAPA
-//	ft_print_map(&game);
+	ft_print_map(&game);
 // LLAMAR A LOS MOVIMIENTOS
-//	mlx_hook(game.win_ptr, 2, 0, ft_move, &game);
+	mlx_hook(game.win_ptr, 2, 0, ft_move, &game);
 // HABILITAR SCAPE Y LIBERAR MEMORIA
-//	mlx_hook(game.win_ptr, 17, 0, ft_free_all, &game);
+	mlx_hook(game.win_ptr, 17, 0, ft_free_all, &game);
 // BUCLE PARA MANTENER EL JUEGO ABIERTO UNA VEZ SE INICIA
-//	mlx_loop(game.mlx_ptr);
-//	ft_free_all(&game);
+	mlx_loop(game.mlx_ptr);
+	ft_free_all(&game);
 	return (0);
 }

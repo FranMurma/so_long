@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:01:35 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/15 19:09:59 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/02/20 16:13:13 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,6 @@ int	ft_print_map(t_game *game)
 		else if (game->map[count1][count2] == 'C')
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 				game->imgs[4].img_ptr, (count2 * SIZE), (count1 * SIZE));
-//			e++;
-//		if (game->map[count1][count2] == '0')
-//			p++;
 		count1++;
 		if (count1 == game->height)
 		{

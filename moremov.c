@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   moremov.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 19:10:07 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/18 18:37:49 by frmurcia         ###   ########.fr       */
+/*   Created: 2023/02/18 16:47:09 by frmurcia          #+#    #+#             */
+/*   Updated: 2023/02/20 14:25:08 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx/mlx.h"
 
-void	ft_close(t_game *game)
-{
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	exit(0);
-}
-
-void	ft_free_map(t_game *game)
+void	ft_win(t_game *game)
 {
 	int	c;
 
-	c = 0;
-	while (game->map[c])
-	{
-		free(game->map[c]);
+	c =0;
+	game->count = game->count +1;
+	printf("Movements number: %d\n", game->count);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
+		15, 66000000, "CONGRATULATIONS\n");
+	mlx_do_sync(game->mlx_ptr); // Actualiza la ventana del juego
+	while (c < 1000000000)
 		c++;
-	}
-	free(game->map);
-}
-
-int	ft_free_all(t_game *game)
-{
-	if (game->map_raw)
-		free(game->map_raw);
-	if (game->map)
-		ft_free_map(game);
-	ft_close(game);
-	return (1);
+	ft_free_all(game);
+	exit(-1);
 }
