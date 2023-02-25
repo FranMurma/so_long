@@ -1,16 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 14:39:52 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/25 20:41:49 by frmurcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
 
@@ -44,7 +33,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	game.count = 0;
+	game.count = 1;
 	ft_check_errors_arg(argc, argv);
 	ft_read_map(argv, &game);
 	ft_map_measures(&game);

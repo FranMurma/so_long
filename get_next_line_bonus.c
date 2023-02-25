@@ -6,11 +6,11 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 16:47:45 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/22 18:21:54 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:09:47 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
 

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moremov.c                                          :+:      :+:    :+:   */
+/*   ft_print_decs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 16:47:09 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/25 19:35:04 by frmurcia         ###   ########.fr       */
+/*   Created: 2022/11/02 15:57:48 by frmurcia          #+#    #+#             */
+/*   Updated: 2022/11/02 17:37:13 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "mlx/mlx.h"
-#include "ft_printf/ft_printf.h"
+#include "ft_printf.h"
 
-void	ft_win(t_game *game)
+int	ft_print_bsten(int nb)
 {
-	int	c;
+	int		cont;
+	char	*s;
 
-	c = 0;
-	game->count = game->count +1;
-	ft_printf("Movements number: %d\n", game->count);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
-		15, 66000000, "CONGRATULATIONS\n");
-	mlx_do_sync(game->mlx_ptr);
-	while (c < 1000000000)
-		c++;
-	ft_free_all(game);
-	exit(-1);
+	cont = 0;
+	s = ft_itoa(nb);
+	cont = ft_putstr(s);
+	free(s);
+	return (cont);
+}
+
+int	ft_print_decu(unsigned int nb)
+{
+	int		cont;
+	char	*s;
+
+	cont = 0;
+	s = ft_u_itoa(nb);
+	cont = ft_putstr(s);
+	free(s);
+	return (cont);
 }

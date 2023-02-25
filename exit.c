@@ -6,12 +6,13 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 19:10:07 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/18 18:37:49 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/02/23 18:22:01 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx/mlx.h"
+#include "ft_printf/ft_printf.h"
 
 void	ft_close(t_game *game)
 {

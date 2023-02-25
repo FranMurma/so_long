@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 14:38:40 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/23 16:42:19 by frmurcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "ft_printf/ft_printf.h"
 
 int	ft_check_errors_arg(int argc, char **argv)

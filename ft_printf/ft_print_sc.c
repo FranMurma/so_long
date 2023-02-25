@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moremov.c                                          :+:      :+:    :+:   */
+/*   ft_print_sc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 16:47:09 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/25 19:35:04 by frmurcia         ###   ########.fr       */
+/*   Created: 2022/10/28 18:37:22 by frmurcia          #+#    #+#             */
+/*   Updated: 2022/11/02 17:26:17 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include "mlx/mlx.h"
-#include "ft_printf/ft_printf.h"
+#include "ft_printf.h"
 
-void	ft_win(t_game *game)
+int	ft_print_s(char *s)
 {
-	int	c;
+	int	cont;
 
-	c = 0;
-	game->count = game->count +1;
-	ft_printf("Movements number: %d\n", game->count);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
-		15, 66000000, "CONGRATULATIONS\n");
-	mlx_do_sync(game->mlx_ptr);
-	while (c < 1000000000)
-		c++;
-	ft_free_all(game);
-	exit(-1);
+	cont = 0;
+	if (!s)
+	{
+		if (write (1, "(null)", 6) == -1)
+			return (-1);
+		return (6);
+	}
+	while (s[cont])
+	{
+		if (write (1, &s[cont], 1) == -1)
+			return (-1);
+		cont++;
+	}
+	return (cont);
+}
+
+int	ft_print_char(int c)
+{
+	if (write (1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }

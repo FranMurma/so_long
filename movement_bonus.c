@@ -1,24 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 15:02:59 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/22 18:27:11 by frmurcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "so_long.h"
+#include "so_long_bonus.h"
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
 
 int	ft_move_w(t_game *game)
 {
 	long int	count;
+	char		*count2;
 
-	count = 0;
+	count = 1;
+	count2 = ft_itoa(game->count); 
 	if ((game->map[game->player_x -1][game->player_y] != '1')
 		&& (game->map[game->player_x -1][game->player_y] != 'E'))
 	{
@@ -28,8 +18,10 @@ int	ft_move_w(t_game *game)
 		game->player_x = game->player_x -1;
 		game->map[game->player_x][game->player_y] = 'P';
 		game->count = game->count +1;
-		ft_printf("Movements number: %d\n", game->count);
-		ft_print_map (game);
+		ft_print_map(game);
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
+			15, 66000000, count2);
+//		ft_printf("Movements number: %d\n", game->count);
 	}
 	else if (game->collect == 0 && (game->map[game->player_x -1]
 			[game->player_y] == 'E'))
@@ -40,8 +32,10 @@ int	ft_move_w(t_game *game)
 int	ft_move_s(t_game *game)
 {
 	long int	count;
+	char		*count2;
 
-	count = 0;
+	count = 1;
+	count2 = ft_itoa(game->count);
 	if ((game->map[game->player_x +1][game->player_y] != '1')
 		&& (game->map[game->player_x +1][game->player_y] != 'E'))
 	{
@@ -51,8 +45,10 @@ int	ft_move_s(t_game *game)
 		game->player_x = game->player_x +1;
 		game->map[game->player_x][game->player_y] = 'P';
 		game->count = game->count +1;
-		ft_printf("Movements number: %d\n", game->count);
-		ft_print_map (game);
+		ft_print_map(game);
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
+			15, 66000000, count2);
+//		ft_printf("Movements number: %d\n", game->count);
 	}
 	else if (game->collect == 0 && (game->map[game->player_x +1]
 			[game->player_y] == 'E'))
@@ -63,8 +59,10 @@ int	ft_move_s(t_game *game)
 int	ft_move_a(t_game *game)
 {
 	long int	count;
+	char		*count2;
 
-	count = 0;
+	count = 1;
+	count2 = ft_itoa(game->count);
 	if ((game->map[game->player_x][game->player_y -1] != '1')
 		&& (game->map[game->player_x][game->player_y -1] != 'E'))
 	{
@@ -74,8 +72,10 @@ int	ft_move_a(t_game *game)
 		game->player_y = game->player_y -1;
 		game->map[game->player_x][game->player_y] = 'P';
 		game->count = game->count +1;
-		ft_printf("Movements number: %d\n", game->count);
-		ft_print_map (game);
+		ft_print_map(game);
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
+			15, 66000000, count2);
+//		ft_printf("Movements number: %d\n", game->count);
 	}
 	else if (game->collect == 0 && (game->map[game->player_x]
 			[game->player_y -1] == 'E'))
@@ -86,8 +86,10 @@ int	ft_move_a(t_game *game)
 int	ft_move_d(t_game *game)
 {
 	long int	count;
+	char		*count2;
 
 	count = 0;
+	count2 = ft_itoa(game->count);
 	if ((game->map[game->player_x][game->player_y +1] != '1')
 		&& (game->map[game->player_x][game->player_y +1] != 'E'))
 	{
@@ -97,8 +99,10 @@ int	ft_move_d(t_game *game)
 		game->player_y = game->player_y +1;
 		game->map[game->player_x][game->player_y] = 'P';
 		game->count = game->count +1;
-		ft_printf("Movements number: %d\n", game->count);
-		ft_print_map (game);
+		ft_print_map(game);
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
+			15, 66000000, count2);
+//		ft_printf("Movements number: %d\n", game->count);
 	}
 	else if (game->collect == 0 && (game->map[game->player_x]
 			[game->player_y +1] == 'E'))
