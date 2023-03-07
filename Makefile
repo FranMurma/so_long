@@ -6,7 +6,7 @@
 #    By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 19:34:18 by frmurcia          #+#    #+#              #
-#    Updated: 2023/02/25 18:50:12 by frmurcia         ###   ########.fr        #
+#    Updated: 2023/03/06 18:17:22 by frmurcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CC = gcc
 
 SRC = so_long.c aux.c check.c check_path.c exit.c get_next_line.c map.c movement.c moremov.c position.c split.c upload_img.c
 
-SRC_BONUS = so_long_bonus.c aux_bonus.c check_bonus.c check_path_bonus.c exit_bonus.c get_next_line_bonus.c map_bonus.c movement_bonus.c moremov_bonus.c position_bonus.c split_bonus.c upload_img_bonus.c
+SRC_BONUS = so_long_bonus.c aux_bonus.c check_bonus.c check_path_bonus.c death_bonus.c enemies_bonus.c exit_bonus.c get_next_line_bonus.c map_bonus.c mov_en_bonus.c movement_bonus.c moremov_bonus.c position_bonus.c split_bonus.c upload_img_bonus.c
 
 FLAGS = -Wall -Werror -Wextra
 

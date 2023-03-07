@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 17:25:58 by frmurcia          #+#    #+#             */
+/*   Updated: 2023/03/07 18:11:19 by frmurcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
@@ -19,6 +31,20 @@ void	ft_free_map(t_game *game)
 		c++;
 	}
 	free(game->map);
+	c = 0;
+	while (game->cp_map[c])
+	{
+		free(game->cp_map[c]);
+		c++;
+	}
+	free(game->cp_map);
+	c = 0;
+	while (game->cp_map2[c])
+	{
+		free (game->cp_map2[c]);
+		c++;
+	}
+	free(game->cp_map2);
 }
 
 int	ft_free_all(t_game *game)
@@ -27,6 +53,10 @@ int	ft_free_all(t_game *game)
 		free(game->map_raw);
 	if (game->map)
 		ft_free_map(game);
+	if (game->imgs)
+		free(game->imgs);
+	if (game->enemies)
+		free(game->enemies);
 	ft_close(game);
-	return (1);
+	exit (1);
 }

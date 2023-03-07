@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/27 15:43:21 by frmurcia          #+#    #+#             */
+/*   Updated: 2023/03/03 15:29:48 by frmurcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 #include "ft_printf/ft_printf.h"
 
@@ -94,7 +106,8 @@ int	ft_check_symbols(t_game *game)
 		if (game->map[c1][c2] == 'C')
 			c++;
 		else if (game->map[c1][c2] != 'P' && game->map[c1][c2] != 'E'
-			&& game->map[c1][c2] != '1' && game->map[c1][c2] != '0')
+			&& game->map[c1][c2] != '1' && game->map[c1][c2] != '0'
+			&& game->map[c1][c2] != 'N')
 			return (-1);
 		c1++;
 		if (c1 == game->height)

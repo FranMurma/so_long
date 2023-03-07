@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 17:01:35 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/23 18:16:53 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:23:05 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_upload_img(t_game *game)
 	int		height;
 	int		width;
 
-	game->imgs = malloc(sizeof(t_img) * 7);
+	game->imgs = malloc(sizeof(t_img) * 5);
 	game->imgs[0].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"imgs/0.xpm", &width, &height);
 	game->imgs[0].data = (int *)mlx_get_data_addr(game->imgs[0].img_ptr,

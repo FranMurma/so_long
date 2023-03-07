@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:42:44 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/02/25 20:44:46 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:06:05 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int		ft_move_d(t_game *game);
 char	ft_go(int keycode);
 // En moremov.c
 void	ft_win(t_game *game);
+void	ft_lost(t_game *game);
 
 // Liberar memoria y salir
 void	ft_close(t_game *game);

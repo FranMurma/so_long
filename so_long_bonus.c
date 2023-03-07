@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/25 :39:52 by frmurcia          #+#    #+#             */
+/*   Updated: 2023/03/07 18:01:50 by frmurcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long_bonus.h"
 #include "mlx/mlx.h"
@@ -19,6 +30,7 @@ int	ft_errors(t_game *game)
 	}
 	ft_check_square(game);
 	ft_player_post(game);
+	ft_count_enemies(game);
 	ft_check_path(game, game->player_x, game->player_y);
 	if (game->collect_cp != 0)
 	{
@@ -33,7 +45,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	game.count = 1;
+	game.count = 0;
 	ft_check_errors_arg(argc, argv);
 	ft_read_map(argv, &game);
 	ft_map_measures(&game);
@@ -42,7 +54,7 @@ int	main(int argc, char **argv)
 	ft_errors(&game);
 	if (game.exit != 0)
 	{
-		write (2, "Error\nThere's not a path between the p and the exit\n", 57);
+		write (2, "Error\nThere's not a path between the Player and the exit\n", 58);
 		exit (-1);
 	}
 	game.mlx_ptr = mlx_init();
@@ -51,6 +63,7 @@ int	main(int argc, char **argv)
 			game.height * SIZE, "Pacoman");
 	ft_print_map(&game);
 	mlx_hook(game.win_ptr, 2, 0, ft_move, &game);
+//	mlx_loop_hook(game.mlx_ptr, &ft_mov_en, &game);
 	mlx_hook(game.win_ptr, 17, 0, ft_free_all, &game);
 	mlx_loop(game.mlx_ptr);
 	ft_free_all(&game);

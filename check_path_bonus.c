@@ -23,8 +23,8 @@ char	**copy_map(t_game *game)
 
 // Función para revisar todas las casillas en busca de un camino
 // que vaya del Player al Exit, para ello iremos restando los coleccionables
-// y buscando la  salida, eso significará que si ambas condiciones son exitosas
-// el path es válido
+// y buscando la  salida. Si recogemos todos los coleecionables
+// eso significará que el path es válido
 
 int	ft_check_path(t_game *game, int x, int y)
 {
