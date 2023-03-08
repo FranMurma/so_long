@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 :39:52 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/07 18:01:50 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:11:14 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int	ft_errors(t_game *game)
 {
+	int c;
 	if (ft_check_surroended(game) == -1)
 	{
 		ft_free_map(game);
@@ -38,6 +39,19 @@ int	ft_errors(t_game *game)
 		exit (-1);
 	}
 	ft_check_exit(game, game->player_x, game->player_y);
+	c = 0;
+	while (game->cp_map2[c])
+	{
+		free (game->cp_map2[c]);
+		c++;
+	}
+	free (game->cp_map2);
+	while (game->cp_map[c])
+	{
+		free (game->cp_map[c]);
+		c++;
+	}
+	free (game->cp_map[c]);
 	return (0);
 }
 
@@ -49,8 +63,9 @@ int	main(int argc, char **argv)
 	ft_check_errors_arg(argc, argv);
 	ft_read_map(argv, &game);
 	ft_map_measures(&game);
-	game.cp_map = copy_map(&game);
-	game.cp_map2 = copy_map(&game);
+//	game.cp_map = copy_map(&game);
+//	game.cp_map2 = copy_map(&game);
+	ft_copy_map(&game);
 	ft_errors(&game);
 	if (game.exit != 0)
 	{
@@ -63,7 +78,7 @@ int	main(int argc, char **argv)
 			game.height * SIZE, "Pacoman");
 	ft_print_map(&game);
 	mlx_hook(game.win_ptr, 2, 0, ft_move, &game);
-//	mlx_loop_hook(game.mlx_ptr, &ft_mov_en, &game);
+	mlx_loop_hook(game.mlx_ptr, &ft_mov_en, &game);
 	mlx_hook(game.win_ptr, 17, 0, ft_free_all, &game);
 	mlx_loop(game.mlx_ptr);
 	ft_free_all(&game);

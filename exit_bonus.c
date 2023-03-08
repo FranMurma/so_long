@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:25:58 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/07 18:11:19 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:50:05 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_free_map(t_game *game)
 		c++;
 	}
 	free(game->cp_map2);
+	free(game->enemies);
 }
 
 int	ft_free_all(t_game *game)

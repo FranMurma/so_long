@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:55:49 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/07 17:57:30 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:16:23 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ int	ft_move_w(t_game *game)
 			[game->player_y] == 'E'))
 		ft_win(game);
 	else if (game->map[game->player_x -1][game->player_y] == 'N')
+	{
+		game->map[game->player_x][game->player_y] = '0';
+		game->end = 1;
 		ft_lost(game);
+	}
+//	free(count2);
 	return (0);
 }
 
@@ -62,7 +67,12 @@ int	ft_move_s(t_game *game)
 			[game->player_y] == 'E'))
 		ft_win(game);
 	else if (game->map[game->player_x +1][game->player_y] == 'N')
+	{
+		game->map[game->player_x][game->player_y] = '0';
+		game->end = 1;
 		ft_lost(game);
+	}
+//	free(count2);
 	return (0);
 }
 
@@ -86,9 +96,17 @@ int	ft_move_a(t_game *game)
 	}
 	else if (game->collect == 0 && (game->map[game->player_x]
 			[game->player_y -1] == 'E'))
+	{
+//		free(count2);
 		ft_win(game);
+	}
 	else if (game->map[game->player_x][game->player_y -1] == 'N')
+	{
+		game->map[game->player_x][game->player_y] = '0';
+		game->end = 1;
+//		free(count2);
 		ft_lost(game);
+	}
 	return (0);
 }
 
@@ -116,8 +134,10 @@ int	ft_move_d(t_game *game)
 	else if (game->map[game->player_x][game->player_y +1] == 'N')
 	{
 		game->map[game->player_x][game->player_y] = '0';
+		game->end = 1;
 		ft_lost(game);
 	}
+//	free(count2);
 	return (0);
 }
 
@@ -140,6 +160,6 @@ int	ft_move(int keycode, t_game *game)
 	if (keycode == 2 && game->end != 1)
 		ft_move_d(game);
 	if (keycode == 53)
-		exit(1);
+		ft_free_all(game);
 	return (0);
 }

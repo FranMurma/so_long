@@ -6,7 +6,7 @@
 #    By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 19:34:18 by frmurcia          #+#    #+#              #
-#    Updated: 2023/03/06 18:17:22 by frmurcia         ###   ########.fr        #
+#    Updated: 2023/03/08 16:12:03 by frmurcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC = so_long.c aux.c check.c check_path.c exit.c get_next_line.c map.c movement
 
 SRC_BONUS = so_long_bonus.c aux_bonus.c check_bonus.c check_path_bonus.c death_bonus.c enemies_bonus.c exit_bonus.c get_next_line_bonus.c map_bonus.c mov_en_bonus.c movement_bonus.c moremov_bonus.c position_bonus.c split_bonus.c upload_img_bonus.c
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra 
+#-fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 
@@ -75,7 +76,9 @@ fclean : clean
 	make clean -C $(FT_PRINTFDIR)
 	@echo "$(GREEN)$(NAME)$(NC) and $(YELLOW)$(BONUS)$(NC) cleaned!$(NC)"
 
+leaks : leaks -atExit -- ./so_long_bonus maps/map_e1.ber
+
 re : fclean all
 norm :
 	@norminette
-.PHONY = all clean fclean re norm bonus
+.PHONY = all clean fclean re norm bonus leaks

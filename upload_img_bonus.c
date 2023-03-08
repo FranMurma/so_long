@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:42:05 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/07 18:15:37 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:58:30 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,6 @@ int	ft_print_map(t_game *game)
 			count1 = 0;
 		}
 	}
+	free(count_mov);
 	return (0);
 }

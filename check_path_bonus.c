@@ -2,23 +2,25 @@
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
 
-char	**copy_map(t_game *game)
+void	ft_copy_map(t_game *game)
 {
 	int		c;
-	char	**copymap;
 
 	c = 0;
-	copymap = (char **)malloc(sizeof(char *) * (game->width + 1));
-	if (!copymap)
-		return (NULL);
+	game->cp_map = (char **)malloc(sizeof(char *) * (game->width + 1));
+	game->cp_map2 = (char **)malloc(sizeof(char *) * (game->width + 1));
+	if (!game->cp_map)
+		return ;
 	while (game->map[c])
 	{
-		copymap[c] = ft_strdup(game->map[c]);
+
+        game->cp_map2[c] = ft_strdup(game->map[c]);
+		game->cp_map[c] = ft_strdup(game->map[c]);
 		c++;
 	}
-	copymap[c] = NULL;
+	game->cp_map[c] = NULL;
+	game->cp_map2[c] = NULL;
 	game->exit = 1;
-	return (copymap);
 }
 
 // Función para revisar todas las casillas en busca de un camino
