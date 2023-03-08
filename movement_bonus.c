@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:55:49 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/08 16:16:23 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:10:51 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,21 +145,21 @@ int	ft_move(int keycode, t_game *game)
 {
 	if (keycode == 13 && game->end == 1)
 		ft_free_all(game);
-	if (keycode == 13 && game->end != 1)
+	else if (keycode == 13 && game->end != 1)
 		ft_move_w(game);
-	if (keycode == 0 && game->end == 1)
+	else if (keycode == 0 && game->end == 1)
 		ft_free_all(game);
-	if (keycode == 0 && game->end != 1)
+	else if (keycode == 0 && game->end != 1)
 		ft_move_a(game);
-	if (keycode == 1 && game->end == 1)
+	else if (keycode == 1 && game->end == 1)
 		ft_free_all(game);
-	if (keycode == 1 && game->end != 1)
+	else if (keycode == 1 && game->end != 1)
 		ft_move_s(game);
-	if (keycode == 2 && game->end == 1)
+	else if (keycode == 2 && game->end == 1)
 		ft_free_all(game);
-	if (keycode == 2 && game->end != 1)
+	else if (keycode == 2 && game->end != 1)
 		ft_move_d(game);
-	if (keycode == 53)
+	else if (keycode == 53)
 		ft_free_all(game);
 	return (0);
 }

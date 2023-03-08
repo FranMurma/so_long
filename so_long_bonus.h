@@ -83,7 +83,7 @@ int		ft_enemy_position(int count1, int count2, t_game *game);
 int		ft_put_enemies(t_game *game);
 
 // Check path (En check_path_bonus.c)
-void	ft_copy_map(t_game *game);
+char	**ft_copy_map(t_game *game);
 int		ft_check_path(t_game *game, int x, int y);
 int		ft_check_exit(t_game *game, int x, int y);
 

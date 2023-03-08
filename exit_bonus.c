@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:25:58 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/08 15:50:05 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:35:24 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,35 @@ void	ft_free_map(t_game *game)
 	int	c;
 
 	c = 0;
-	while (game->map[c])
+	if (game->map)
 	{
-		free(game->map[c]);
-		c++;
+		while (game->map[c] && c <= game->width)
+		{
+			free(game->map[c]);
+			c++;
+		}
+		free(game->map);
 	}
-	free(game->map);
 	c = 0;
-	while (game->cp_map[c])
+	if (game->cp_map)
 	{
-		free(game->cp_map[c]);
-		c++;
+		while (game->cp_map[c] && c <= game->width)
+		{
+			free(game->cp_map[c]);
+			c++;
+		}
+		free(game->cp_map);
 	}
-	free(game->cp_map);
 	c = 0;
-	while (game->cp_map2[c])
+	if (game->cp_map2)
 	{
-		free (game->cp_map2[c]);
-		c++;
+		while (game->cp_map2[c] && c <= game->width)
+		{
+			free (game->cp_map2[c]);
+			c++;
+		}
 	}
 	free(game->cp_map2);
-	free(game->enemies);
 }
 
 int	ft_free_all(t_game *game)

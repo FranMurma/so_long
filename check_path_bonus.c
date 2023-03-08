@@ -2,13 +2,33 @@
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
 
-void	ft_copy_map(t_game *game)
+char	**ft_copy_map(t_game *game)
 {
 	int		c;
+	char	**copymap;
 
 	c = 0;
-	game->cp_map = (char **)malloc(sizeof(char *) * (game->width + 1));
-	game->cp_map2 = (char **)malloc(sizeof(char *) * (game->width + 1));
+	copymap = (char **)malloc(sizeof(char *) * (game->width + 1));
+	if (!copymap)
+		return (NULL);
+	while (game->map[c])
+	{
+		copymap[c] = ft_strdup(game->map[c]);
+		c++;
+	}
+	copymap[c] = NULL;
+	game->exit = 1;
+	return (copymap);
+}
+
+/*void	ft_copy_map(t_game *game)
+{
+	int		c;
+	char	**copymap;
+
+	c = 0;
+	game->cp_map = (char **)malloc(sizeof(char *) * (game->width));
+	game->cp_map2 = (char **)malloc(sizeof(char *) * (game->width));
 	if (!game->cp_map)
 		return ;
 	while (game->map[c])
@@ -18,10 +38,10 @@ void	ft_copy_map(t_game *game)
 		game->cp_map[c] = ft_strdup(game->map[c]);
 		c++;
 	}
-	game->cp_map[c] = NULL;
-	game->cp_map2[c] = NULL;
+	game->cp_map[c] = 0;
+	game->cp_map2[c] = 0;
 	game->exit = 1;
-}
+}*/
 
 // Función para revisar todas las casillas en busca de un camino
 // que vaya del Player al Exit, para ello iremos restando los coleccionables
