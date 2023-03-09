@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:42:05 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/08 16:26:14 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:51:23 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,23 @@ void	ft_up_moremore(t_game *game, int height, int width)
 	game->imgs[10].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"imgs/dead1.xpm", &width, &height);
 	game->imgs[10].data = (int *)mlx_get_data_addr(game->imgs[10].img_ptr,
-			&game->imgs[10].bpp, &game->imgs[10].size_l, &game->imgs[10].endian);
+			&game->imgs[10].bpp, &game->imgs[10].size_l,
+			&game->imgs[10].endian);
 	game->imgs[11].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"imgs/dead2.xpm", &width, &height);
 	game->imgs[11].data = (int *)mlx_get_data_addr(game->imgs[11].img_ptr,
-			&game->imgs[11].bpp, &game->imgs[11].size_l, &game->imgs[11].endian);
+			&game->imgs[11].bpp, &game->imgs[11].size_l,
+			&game->imgs[11].endian);
 	game->imgs[12].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"imgs/dead3.xpm", &width, &height);
 	game->imgs[12].data = (int *)mlx_get_data_addr(game->imgs[12].img_ptr,
-			&game->imgs[12].bpp, &game->imgs[12].size_l, &game->imgs[12].endian);
+			&game->imgs[12].bpp, &game->imgs[12].size_l,
+			&game->imgs[12].endian);
 	game->imgs[13].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"imgs/dead4.xpm", &width, &height);
 	game->imgs[13].data = (int *)mlx_get_data_addr(game->imgs[13].img_ptr,
-			&game->imgs[13].bpp, &game->imgs[13].size_l, &game->imgs[13].endian);
+			&game->imgs[13].bpp, &game->imgs[13].size_l,
+			&game->imgs[13].endian);
 }
 
 void	ft_upload_more(t_game *game, int height, int width)
@@ -90,7 +94,15 @@ void	ft_upload_img(t_game *game)
 
 int	ft_print_more(int count1, int count2, t_game *game)
 {
-	if (game->map[count1][count2] == 'N')
+	if (game->map[count1][count2] == '0')
+		ft_o_position(count1, count2, game);
+	if (game->map[count1][count2] == '1')
+		ft_wall_position(count1, count2, game);
+	else if (game->map[count1][count2] == 'E')
+		ft_exit_position(count1, count2, game);
+	else if (game->map[count1][count2] == 'P')
+		ft_player_position(count1, count2, game);
+	else if (game->map[count1][count2] == 'N')
 		ft_enemy_position(count1, count2, game);
 	else if (game->map[count1][count2] == 'C')
 		ft_collect_position(count1, count2, game);
@@ -108,27 +120,20 @@ int	ft_print_map(t_game *game)
 	count2 = 0;
 	while (count1 <= game->height && count2 <= game->width)
 	{
-		if (game->map[count1][count2] == '0')
-			ft_o_position(count1, count2, game);
-		else if (game->map[count1][count2] == '1')
-			ft_wall_position(count1, count2, game);
-		else if (game->map[count1][count2] == 'E')
-			ft_exit_position(count1, count2, game);
-		else if (game->map[count1][count2] == 'P')
-			ft_player_position(count1, count2, game);
 		ft_print_more(count1, count2, game);
 		count1++;
 		mlx_string_put(game->mlx_ptr, game->win_ptr, 15,
 			15, 0xff00, count_mov);
 		if (game->end == 1)
-			mlx_string_put(game->mlx_ptr, game->win_ptr, (game->width * 32 / 2 -64),
-					(game->height *32 / 2), 0xff00, "YOOOUUU ARE A LOOOSER!!!\nINVADERS WIN!!");
+			mlx_string_put(game->mlx_ptr, game->win_ptr,
+				(game->width * 32 / 2 -64), (game->height * 32 / 2),
+				0xff00, "YOOOUUU ARE A LOOOSER!!!\nINVADERS WIN!!");
 		if (count1 == game->height)
 		{
 			count2++;
 			count1 = 0;
 		}
 	}
-	//free(count_mov);
+	free(count_mov);
 	return (0);
 }

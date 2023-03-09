@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/09 18:52:05 by frmurcia          #+#    #+#             */
+/*   Updated: 2023/03/09 18:56:27 by frmurcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
@@ -105,11 +117,11 @@ int		ft_wall_position(int count1, int count2, t_game *game);
 int		ft_exit_position(int count1, int count2, t_game *game);
 int		ft_collect_position(int count1, int count2, t_game *game);
 // Printar muerte (en death_bonus.c)
-int		ft_death(int count1, int count2, t_game *game);
+/*int		ft_death(int count1, int count2, t_game *game);
 int		ft_death_2(int count1, int count2, t_game *game);
 int		ft_death_3(int count1, int count2, t_game *game);
 int		ft_death_4(int count1, int count2, t_game *game);
-
+*/
 // Hacer los movimientos (En movement_bonus.c)
 int		ft_move(int keycode, t_game *game);
 int		ft_move_w(t_game *game);
@@ -130,6 +142,8 @@ int		ft_move_left(t_game *game, int count_e);
 
 // Liberar memoria y salir (en exit_bonus.c)
 void	ft_close(t_game *game);
+void	ft_free_cpmap(t_game *game);
+void	ft_free_cpmap2(t_game *game);
 int		ft_free_all(t_game *game);
 void	ft_free_map(t_game *game);
 

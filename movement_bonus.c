@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:55:49 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/08 17:10:51 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:42:54 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 int	ft_move_w(t_game *game)
 {
-	char		*count2;
-
-	count2 = ft_itoa(game->count);
 	game->play_dir = 'W';
 	if ((game->map[game->player_x -1][game->player_y] != '1')
 		&& (game->map[game->player_x -1][game->player_y] != 'E')
@@ -41,15 +38,11 @@ int	ft_move_w(t_game *game)
 		game->end = 1;
 		ft_lost(game);
 	}
-//	free(count2);
 	return (0);
 }
 
 int	ft_move_s(t_game *game)
 {
-	char		*count2;
-
-	count2 = ft_itoa(game->count);
 	game->play_dir = 'S';
 	if ((game->map[game->player_x +1][game->player_y] != '1')
 		&& (game->map[game->player_x +1][game->player_y] != 'E')
@@ -72,15 +65,11 @@ int	ft_move_s(t_game *game)
 		game->end = 1;
 		ft_lost(game);
 	}
-//	free(count2);
 	return (0);
 }
 
 int	ft_move_a(t_game *game)
 {
-	char		*count2;
-
-	count2 = ft_itoa(game->count);
 	game->play_dir = 'A';
 	if ((game->map[game->player_x][game->player_y -1] != '1')
 		&& (game->map[game->player_x][game->player_y -1] != 'E')
@@ -96,15 +85,11 @@ int	ft_move_a(t_game *game)
 	}
 	else if (game->collect == 0 && (game->map[game->player_x]
 			[game->player_y -1] == 'E'))
-	{
-//		free(count2);
 		ft_win(game);
-	}
 	else if (game->map[game->player_x][game->player_y -1] == 'N')
 	{
 		game->map[game->player_x][game->player_y] = '0';
 		game->end = 1;
-//		free(count2);
 		ft_lost(game);
 	}
 	return (0);
@@ -112,9 +97,6 @@ int	ft_move_a(t_game *game)
 
 int	ft_move_d(t_game *game)
 {
-	char		*count2;
-
-	count2 = ft_itoa(game->count);
 	game->play_dir = 'D';
 	if ((game->map[game->player_x][game->player_y +1] != '1')
 		&& (game->map[game->player_x][game->player_y +1] != 'E')
@@ -137,7 +119,6 @@ int	ft_move_d(t_game *game)
 		game->end = 1;
 		ft_lost(game);
 	}
-//	free(count2);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 16:22:42 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/08 18:40:38 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:27:56 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,28 @@ void	ft_win(t_game *game)
 	int	c;
 
 	c = 0;
-//	game->end = 1;
 	game->count = game->count +1;
 	mlx_string_put(game->mlx_ptr, game->win_ptr, (game->width * 32 / 2 -64),
-		(game->height *32 / 2), 0xff00, "YOOOUUU WIIINNN!!!\n");
+		(game->height * 32 / 2), 0xff00, "YOOOUUU WIIINNN!!!\n");
 	mlx_do_sync(game->mlx_ptr);
 	while (c < 1000000000)
 		c++;
 	while (c > 0)
 		c--;
 	ft_free_all(game);
-//	exit(-1);
 }
 
-void ft_lost(t_game *game) 
+void	ft_lost(t_game *game)
 {
 	game->end = 1;
-    mlx_string_put(game->mlx_ptr, game->win_ptr, (game->width * 32 / 2 -64),
-        (game->height *32 / 2), 0xff00, "YOOOUUU ARE A LOOOSER!!!\nINVADERS WIN!!");
+	mlx_string_put(game->mlx_ptr, game->win_ptr, (game->width * 32 / 2 -64),
+		(game->height * 32 / 2), 0xff00,
+		"YOOOUUU ARE A LOOOSER!!!\nINVADERS WIN!!");
 	game->map[game->player_x][game->player_y] = '2';
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-        game->imgs[0].img_ptr, (game->player_y * SIZE), (game->player_x * SIZE));
-    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-        game->imgs[13].img_ptr, (game->player_y * SIZE), (game->player_x * SIZE));
-//	ft_no_move(keycode);
-//		exit(1);
-//	while (c < 40000000)
-//		c++;
-//	while (c > 0)
-//		c--;
-//	usleep(100000);
-//	ft_free_all(game);
-//	exit (-1);*/
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->imgs[0].img_ptr, (game->player_y * SIZE),
+		(game->player_x * SIZE));
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->imgs[13].img_ptr, (game->player_y * SIZE),
+		(game->player_x * SIZE));
 }

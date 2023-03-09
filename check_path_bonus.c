@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_path_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/09 15:10:27 by frmurcia          #+#    #+#             */
+/*   Updated: 2023/03/09 18:12:29 by frmurcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 #include "mlx/mlx.h"
 #include "ft_printf/ft_printf.h"
@@ -21,33 +33,10 @@ char	**ft_copy_map(t_game *game)
 	return (copymap);
 }
 
-/*void	ft_copy_map(t_game *game)
-{
-	int		c;
-	char	**copymap;
-
-	c = 0;
-	game->cp_map = (char **)malloc(sizeof(char *) * (game->width));
-	game->cp_map2 = (char **)malloc(sizeof(char *) * (game->width));
-	if (!game->cp_map)
-		return ;
-	while (game->map[c])
-	{
-
-        game->cp_map2[c] = ft_strdup(game->map[c]);
-		game->cp_map[c] = ft_strdup(game->map[c]);
-		c++;
-	}
-	game->cp_map[c] = 0;
-	game->cp_map2[c] = 0;
-	game->exit = 1;
-}*/
-
 // Función para revisar todas las casillas en busca de un camino
 // que vaya del Player al Exit, para ello iremos restando los coleccionables
 // y buscando la  salida. Si recogemos todos los coleecionables
 // eso significará que el path es válido
-
 int	ft_check_path(t_game *game, int x, int y)
 {
 	if ((game->cp_map[x][y] == 'V') || (game->cp_map[x][y] == '1'

@@ -6,13 +6,13 @@
 #    By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/23 19:34:18 by frmurcia          #+#    #+#              #
-#    Updated: 2023/03/08 16:35:54 by frmurcia         ###   ########.fr        #
+#    Updated: 2023/03/09 20:10:04 by frmurcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # COLORS
 GREEN			:= \033[32m
-BLUE			:= \033[34m 
+BLUE			:= \033[34m
 YELLOW			:= \033[1m\033[33m
 NC				:= \033[m
 
@@ -24,10 +24,9 @@ CC = gcc
 
 SRC = so_long.c aux.c check.c check_path.c exit.c get_next_line.c map.c movement.c moremov.c position.c split.c upload_img.c
 
-SRC_BONUS = so_long_bonus.c aux_bonus.c check_bonus.c check_path_bonus.c death_bonus.c enemies_bonus.c exit_bonus.c get_next_line_bonus.c map_bonus.c mov_en_bonus.c movement_bonus.c moremov_bonus.c position_bonus.c split_bonus.c upload_img_bonus.c
+SRC_BONUS = so_long_bonus.c aux_bonus.c check_bonus.c check_path_bonus.c death_bonus.c enemies_bonus.c exit_bonus.c get_next_line_bonus.c map_bonus.c mov_en_bonus.c movement_bonus.c moremov_bonus.c position_bonus.c pos_surrounding_bonus.c split_bonus.c upload_img_bonus.c
 
-FLAGS = -Wall -Werror -Wextra 
-#-fsanitize=address
+FLAGS = -Wall -Werror -Wextra -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 
@@ -47,9 +46,11 @@ RM = rm -f
 	$(CC) -c $(FLAGS) -Imlx/ -Ift_printf/ $< -o $@
 
 all :
-	$(MAKE) ft_printf
+	$(MAKE) -C ft_printf/
 	$(MAKE) -C mlx/
 	$(MAKE) $(NAME)
+
+-include : $(DEPS) $(DEPS_BONUS)
 
 $(NAME) : $(OBJ) $(HEADER)
 	$(CC) $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -Lft_printf -lftprintf $(OBJ) -o $(NAME)
@@ -57,11 +58,12 @@ $(NAME) : $(OBJ) $(HEADER)
 bonus : $(OBJ_BONUS) $(HEADER_BONUS)
 	$(MAKE) ft_printf
 	$(MAKE) -C mlx/
-	$(CC) $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -Lft_printf -lftprintf $(OBJ_BONUS) -o $(BONUS) 
+	$(CC) $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit -Lft_printf -lftprintf $(OBJ_BONUS) -o $(BONUS)
+	@touch $@
 
 ##bonus : $(BONUS) $(OBJ_BONUS) $(HEADER_BONUS)
 ##	$(CC) $(FLAGS) $(BOONUS) $(OBJ_BONUS)
-##	touch $@ 
+##	touch $@
 
 ft_printf :
 	make -C $(FT_PRINTFDIR)
@@ -74,11 +76,10 @@ fclean : clean
 	$(RM) $(NAME) $(BONUS)
 	make clean -C mlx
 	make clean -C $(FT_PRINTFDIR)
+	$(RM) bonus
 	@echo "$(GREEN)$(NAME)$(NC) and $(YELLOW)$(BONUS)$(NC) cleaned!$(NC)"
-
-leaks : leaks -atExit -- ./so_long_bonus maps/map_e1.ber
 
 re : fclean all
 norm :
 	@norminette
-.PHONY = all clean fclean re norm bonus leaks
+.PHONY = all clean fclean re norm bonus

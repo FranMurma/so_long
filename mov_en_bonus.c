@@ -6,7 +6,7 @@
 /*   By: frmurcia <frmurcia@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 16:33:29 by frmurcia          #+#    #+#             */
-/*   Updated: 2023/03/08 16:12:31 by frmurcia         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:32:38 by frmurcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	ft_move_right(t_game *game, int count_e)
 		game->enemies[count_e].e_y = game->enemies[count_e].e_y -1;
 		game->map[game->enemies[count_e].e_x][game->enemies[count_e].e_y] = 'N';
 	}
-	else if (game->map[game->enemies[count_e].e_x][game->enemies[count_e].e_y -1]
-		== 'P')
+	else if (game->map[game->enemies[count_e].e_x]
+		[game->enemies[count_e].e_y -1] == 'P')
 	{
 		game->end = 1;
 		ft_lost(game);
@@ -43,8 +43,8 @@ int	ft_move_left(t_game *game, int count_e)
 		game->enemies[count_e].e_y = game->enemies[count_e].e_y +1;
 		game->map[game->enemies[count_e].e_x][game->enemies[count_e].e_y] = 'N';
 	}
-	else if (game->map[game->enemies[count_e].e_x][game->enemies[count_e].e_y +1]
-		== 'P')
+	else if (game->map[game->enemies[count_e].e_x]
+		[game->enemies[count_e].e_y +1] == 'P')
 	{
 		game->end = 1;
 		ft_lost(game);
@@ -72,13 +72,14 @@ int	ft_mov_en(t_game *game)
 	int	count_e;
 
 	count_e = 0;
-	if (game->tmp_mov % 10 == 0)
+	if (game->tmp_mov % 10 == 0 && game->end != 1)
 		if (ft_real_move(game, count_e) == -1)
 			ft_lost(game);
 	if (game->end == 1)
 	{
 		mlx_string_put(game->mlx_ptr, game->win_ptr, (game->width * 32 / 2 -64),
-			(game->height *32 / 2), 0xff00, "YOOOUUU ARE A LOOOSER!!!\nINVADERS WIN!!");
+			(game->height * 32 / 2), 0xff00,
+			"YOOOUUU ARE A LOOOSER!!!\nINVADERS WIN!!");
 	}
 	ft_print_map(game);
 	game->tmp_mov++;
